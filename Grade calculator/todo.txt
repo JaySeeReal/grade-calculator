@@ -1,0 +1,4 @@
+1.add subject
+2.average
+3.delete subject
+4.grade textboxes

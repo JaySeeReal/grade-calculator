@@ -1,0 +1,121 @@
+from tkinter import *
+import fileRepository
+root = Tk()
+root.geometry("200x500")
+root.title("Grade calculator")
+
+fileRepository.addTestSubjects()
+fileRepository.shortGrade()
+for i in fileRepository.gradeList:
+    print(i.subject)
+    print(i.grade)
+
+def gradeAverage():
+    avg = 0.0
+    count = 0
+    for subject in fileRepository.gradeList:
+        avg += subject.grade
+        count += 1
+    avg = avg / count
+    avg = round(avg,2)
+    return avg
+
+def refreshInfo():
+    global subject_1,subject_2,subject_3,subject_4,subject_5,subject_6,subject_7,subject_8,subject_9,subject_10
+    subject_1 = fileRepository.searchForGrade(1)
+    subject_1 = grade_1.get()
+    subject_2 = fileRepository.searchForGrade(2)
+    subject_2 = grade_2.get()
+    subject_3 = fileRepository.searchForGrade(3)
+    subject_3 = grade_3.get()
+    subject_4 = fileRepository.searchForGrade(4)
+    subject_4 = grade_4.get()
+    subject_5 = fileRepository.searchForGrade(5)
+    subject_5 = grade_5.get()
+    subject_6 = fileRepository.searchForGrade(6)
+    subject_6 = grade_6.get()
+    subject_7 = fileRepository.searchForGrade(7)
+    subject_7 = grade_7.get()
+    subject_8 = fileRepository.searchForGrade(8)
+    subject_8 = grade_8.get()
+    subject_9 = fileRepository.searchForGrade(9)
+    subject_9 = grade_9.get()
+    subject_10 = fileRepository.searchForGrade(10)
+    subject_10 = grade_10.get()
+
+    text_Average.delete(1.0, "end")
+    text_Average.insert(1.0, gradeAverage())
+
+def exit():
+    fileRepository.saveToFile()
+    root.destroy()
+
+average = gradeAverage()
+text_AverageLabel = Label(text="average")
+text_AverageLabel.grid(column=0,row=0)
+text_Average = Text(root,width=7,height=1)
+text_Average.delete(1.0, "end")
+text_Average.insert(1.0, average)
+text_Average.grid(column=1,row=0)
+
+
+subject_1 = Label(root, text=fileRepository.searchForSubject(1))
+grade_1 = Entry(root, width=10)
+grade_1.insert(0,fileRepository.searchForGrade(1))
+subject_1.grid(column=0)
+grade_1.grid(column=1,row=1)
+subject_2 = Label(root, text=fileRepository.searchForSubject(2))
+grade_2 = Entry(root, width=10)
+grade_2.insert(0,fileRepository.searchForGrade(2))
+subject_2.grid(column=0)
+grade_2.grid(column=1,row=2)
+subject_3 = Label(root, text=fileRepository.searchForSubject(3))
+grade_3 = Entry(root, width=10)
+grade_3.insert(0,fileRepository.searchForGrade(3))
+subject_3.grid(column=0)
+grade_3.grid(column=1,row=3)
+subject_4 = Label(root, text=fileRepository.searchForSubject(4))
+grade_4 = Entry(root, width=10)
+grade_4.insert(0,fileRepository.searchForGrade(4))
+subject_4.grid(column=0)
+grade_4.grid(column=1,row=4)
+subject_5 = Label(root, text=fileRepository.searchForSubject(5))
+grade_5 = Entry(root, width=10)
+grade_5.insert(0,fileRepository.searchForGrade(5))
+subject_5.grid(column=0)
+grade_5.grid(column=1,row=5)
+subject_6 = Label(root, text=fileRepository.searchForSubject(6))
+grade_6 = Entry(root, width=10)
+grade_6.insert(0,fileRepository.searchForGrade(6))
+subject_6.grid(column=0)
+grade_6.grid(column=1,row=6)
+subject_7 = Label(root, text=fileRepository.searchForSubject(7))
+grade_7 = Entry(root, width=10)
+grade_7.insert(0,fileRepository.searchForGrade(7))
+subject_7.grid(column=0)
+grade_7.grid(column=1,row=7)
+subject_8 = Label(root, text=fileRepository.searchForSubject(8))
+grade_8 = Entry(root, width=10)
+grade_8.insert(0,fileRepository.searchForGrade(8))
+subject_8.grid(column=0)
+grade_8.grid(column=1,row=8)
+subject_9 = Label(root, text=fileRepository.searchForSubject(9))
+grade_9 = Entry(root, width=10)
+grade_9.insert(0,fileRepository.searchForGrade(9))
+subject_9.grid(column=0)
+grade_9.grid(column=1,row=9)
+subject_10 = Label(root, text=fileRepository.searchForSubject(10))
+grade_10 = Entry(root, width=10)
+grade_10.insert(0,fileRepository.searchForGrade(10))
+subject_10.grid(column=0)
+grade_10.grid(column=1,row=10)
+refreshButton = Button(root, text="refresh", command=refreshInfo,width=18,height=1)
+refreshButton.grid(column=0,row=11,columnspan=2)
+add_subject = Button(root, text="add subject",command=fileRepository.addSubject("test", "2"), width=18,height=1)
+add_subject.grid(column=0,row=12,columnspan=2)
+save = Button(root, text="save", command=fileRepository.saveToFile(),width=18,height=1)
+save.grid(column=0,row=13,columnspan=2)
+exit = Button(root, text="save and exit", command=exit, width=18,height=1)
+exit.grid(column=0,row=14,columnspan=2)
+root.mainloop()
+

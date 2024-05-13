@@ -1,0 +1,7 @@
+/.vs
+/.vscode
+/Calculator
+/SnakeRent.Core
+/SnakeRent.Server
+/SnakeRent.web
+/__pycache__
